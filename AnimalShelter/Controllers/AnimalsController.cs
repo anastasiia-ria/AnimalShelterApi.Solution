@@ -70,7 +70,22 @@ namespace AnimalShelterControllers
           .ToListAsync();
       var totalRecords = await db.Animals.CountAsync();
       var pagedResponse = PaginationHelper.CreatePagedResponse<Animal>(pagedData, validFilter, totalRecords, uriService, route);
-      return Ok(pagedResponse.Data);
+      return Ok(pagedResponse);
+    }
+    // GET: api/Animals/random
+    [HttpGet("random")]
+    public async Task<IActionResult> GetRandom()
+    {
+      Random rnd = new Random();
+
+      int id = rnd.Next(db.Animals.Count()) + 1;
+      var animal = await db.Animals.FindAsync(id);
+      if (animal == null)
+      {
+        return NotFound();
+      }
+
+      return Ok(animal);
     }
     // GET: api/Animals/5
     [HttpGet("{id}")]

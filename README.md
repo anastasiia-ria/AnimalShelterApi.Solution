@@ -61,6 +61,7 @@ Animal Shelter lets users to create an API.
 | ------------------------ | ------------------------------ |
 | api/animals              | All animals                    |
 | api/animals/1            | An animal with id = 1          |
+| api/animals/random       | Random animal                  |
 | api/animals?species=dog  | Animals filtered by species    |
 | api/animals?sex=male     | Animals filtered by sex        |
 | api/animals?color=black  | Animals filtered by color      |

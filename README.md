@@ -53,7 +53,20 @@ Animal Shelter lets users to create an API.
   ```
    ~/Desktop/AnimalShelterApi.Solution/AnimalShelterApi $ dotnet run
   ```
-- Visit [http://localhost:5003](http://localhost:5003) to try this application
+- Access you API by following this link: [http://localhost:5004/api/animals](http://localhost:5004/api/animals) to try this application
+
+## Endpoints
+
+| Endpoints                | Returns                        |
+| ------------------------ | ------------------------------ |
+| api/animals              | All animals                    |
+| api/animals/1            | An animal with id = 1          |
+| api/animals?species=dog  | Animals filtered by species    |
+| api/animals?sex=male     | Animals filtered by sex        |
+| api/animals?color=black  | Animals filtered by color      |
+| api/animals?breed=hound  | Animals filtered by breed      |
+| api/animals?pageNumber=2 | Second page of all animals     |
+| api/animals?pageSize=50  | One page contains max 50 items |
 
 ## Known Bugs
 

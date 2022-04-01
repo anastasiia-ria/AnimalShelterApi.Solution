@@ -17,30 +17,19 @@ namespace AnimalShelterControllers
 {
   [ApiVersion("1.0")]
   [Route("api/{m:apiVersion}/animals")]
-  public class AnimalsV1Controller : Controller
-  {
-    [HttpGet]
-    public IEnumerable<string> Get()
-    {
-      return new string[] { "Value1 from Version 1", "value2 from Version 1" };
-    }
-  }
-
-  [Route("api/[controller]")]
-  [ApiController]
-  public class AnimalsController : ControllerBase
+  public class AnimalsV1Controller : ControllerBase
   {
     private readonly AnimalShelterContext db;
     private readonly IUriService uriService;
 
-    public AnimalsController(AnimalShelterContext db, IUriService uriService)
+    public AnimalsV1Controller(AnimalShelterContext db, IUriService uriService)
     {
       this.db = db;
       this.uriService = uriService;
 
     }
 
-    // GET: api/Animals
+    // GET: api/1.0/Animals
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter, string species, string sex, string color, string breed)
     {
@@ -72,7 +61,7 @@ namespace AnimalShelterControllers
       var pagedResponse = PaginationHelper.CreatePagedResponse<Animal>(pagedData, validFilter, totalRecords, uriService, route);
       return Ok(pagedResponse);
     }
-    // GET: api/Animals/random
+    // GET: api/1.0/Animals/random
     [HttpGet("random")]
     public async Task<IActionResult> GetRandom()
     {
@@ -87,7 +76,7 @@ namespace AnimalShelterControllers
 
       return Ok(animal);
     }
-    // GET: api/Animals/5
+    // GET: api/1.0/Animals/5
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAnimal(int id)
     {
@@ -101,7 +90,7 @@ namespace AnimalShelterControllers
       return Ok(animal);
     }
 
-    // PUT: api/Animals/5
+    // PUT: api/1.0/Animals/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAnimal(int id, Animal animal)
@@ -132,7 +121,7 @@ namespace AnimalShelterControllers
       return NoContent();
     }
 
-    // POST: api/Animals
+    // POST: api/1.0/Animals
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
@@ -143,7 +132,7 @@ namespace AnimalShelterControllers
       return CreatedAtAction("GeAll", new { id = animal.AnimalId }, animal);
     }
 
-    // DELETE: api/Animals/5
+    // DELETE: api/1.0/Animals/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAnimal(int id)
     {

@@ -16,7 +16,7 @@ namespace AnimalShelterControllers
 
 {
   [ApiVersion("1.0")]
-  [Route("api/{m:apiVersion}/animals")]
+  [Route("api/animals")]
   public class AnimalsV1Controller : ControllerBase
   {
     private readonly AnimalShelterContext db;
@@ -29,7 +29,7 @@ namespace AnimalShelterControllers
 
     }
 
-    // GET: api/1.0/Animals
+    // GET: api/Animals
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter, string species, string sex, string color, string breed)
     {
@@ -61,7 +61,7 @@ namespace AnimalShelterControllers
       var pagedResponse = PaginationHelper.CreatePagedResponse<Animal>(pagedData, validFilter, totalRecords, uriService, route);
       return Ok(pagedResponse);
     }
-    // GET: api/1.0/Animals/random
+    // GET: api/Animals/random
     [HttpGet("random")]
     public async Task<IActionResult> GetRandom()
     {
@@ -76,7 +76,7 @@ namespace AnimalShelterControllers
 
       return Ok(animal);
     }
-    // GET: api/1.0/Animals/5
+    // GET: api/Animals/5
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAnimal(int id)
     {
@@ -90,7 +90,7 @@ namespace AnimalShelterControllers
       return Ok(animal);
     }
 
-    // PUT: api/1.0/Animals/5
+    // PUT: api/Animals/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAnimal(int id, Animal animal)
@@ -121,7 +121,7 @@ namespace AnimalShelterControllers
       return NoContent();
     }
 
-    // POST: api/1.0/Animals
+    // POST: api/Animals
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
@@ -132,7 +132,7 @@ namespace AnimalShelterControllers
       return CreatedAtAction("GeAll", new { id = animal.AnimalId }, animal);
     }
 
-    // DELETE: api/1.0/Animals/5
+    // DELETE: api/Animals/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAnimal(int id)
     {
